@@ -1,0 +1,39 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity clock_divider_tb is
+end clock_divider_tb;
+
+architecture Behavioral of clock_divider_tb is
+    signal clk_in : STD_LOGIC := '0';
+    signal reset_clk : STD_LOGIC;
+    signal clk_out: STD_LOGIC := '0';
+      
+begin
+
+    -- instantiate the Clock Divider UUT
+    uut: entity work.clock_divider
+        port map(
+            clk_in => clk_in,
+            reset_clk => reset_clk,
+            clk_out => clk_out
+        );
+       
+    clk_process: process
+    begin
+        clk_in <= '0';
+        wait for 5ns;
+        clk_in <= '1';
+        wait for 5ns;
+    end process;
+       
+    stim_proc: process
+    begin
+        reset_clk <= '1';
+        wait for 20ns;
+        reset_clk <= '0';
+        wait for 1000ns;
+        wait;
+    end process;
+   
+end Behavioral;
