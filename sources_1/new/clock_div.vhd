@@ -23,7 +23,7 @@ begin
 
    elsif rising_edge(clk_in) then
         -- Incrementing counter til it reaches the limit
-        if counter = 10 - 1 then
+        if counter = 500000 - 1 then
             counter  <= (others => '0');
             slow_clk <= not slow_clk; 
         else
